@@ -12,6 +12,9 @@ export default {
       gray: '#787878',
       'gray-light': '#f6f6f6',
     },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 } satisfies Config

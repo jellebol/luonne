@@ -1,7 +1,15 @@
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* color palette */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --purple: #6357b1;
+  --grey-light: #f6f6f6;
+}
 
-  font-weight: normal;
+:root {
+  --color-background: var(--grey-light);
+}
+
+body {
+  background-color: #f6f6f6;
 }
