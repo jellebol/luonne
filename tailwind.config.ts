@@ -5,6 +5,8 @@ export default {
   content: [],
   theme: {
     colors: {
+      white: '#fff',
+      black: '#000',
       blue: '#6357b1',
       purple: '#6357b1',
       green: '#25ff90',

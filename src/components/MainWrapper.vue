@@ -2,7 +2,7 @@
 
 <template>
   <div class="bg-diagonal">
-    <main class="container">
+    <main class="container py-10">
       <slot></slot>
     </main>
   </div>
