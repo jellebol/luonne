@@ -4,8 +4,13 @@ import PostsWrapper from './posts/PostsWrapper.vue'
 </script>
 
 <template>
-  <div class="grid md:grid-cols-2">
-    <PostsWrapper />
-    <ActionsWrapper />
+  <div class="md:flex gap-10 place-content-between">
+    <div class="flex-1 md:max-w-md">
+      <PostsWrapper />
+    </div>
+    <div class="flex-1 md:max-w-md">
+      <ActionsWrapper />
+    </div>
+
   </div>
 </template>
