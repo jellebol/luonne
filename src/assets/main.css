@@ -3,11 +3,11 @@
   --white: #ffffff;
   --black: #000000;
   --purple: #6357b1;
-  --grey-light: #f6f6f6;
+  --gray-light: #f6f6f6;
 }
 
 :root {
-  --color-background: var(--grey-light);
+  --color-background: var(--gray-light);
 }
 
 body {

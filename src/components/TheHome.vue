@@ -4,7 +4,7 @@ import PostsWrapper from './posts/PostsWrapper.vue'
 </script>
 
 <template>
-  <div class="columns-2">
+  <div class="grid md:grid-cols-2">
     <PostsWrapper />
     <ActionsWrapper />
   </div>
