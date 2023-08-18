@@ -5,11 +5,13 @@ import HeadingText from '../typography/HeadingText.vue'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted } from 'vue'
 import { usePostStore } from '../../stores/posts'
+import { useActionStore } from '../../stores/actions'
 
-const store = usePostStore()
+const storePosts = usePostStore()
+const storeActions = useActionStore()
 
 const firstPosts = computed(() => {
-  return store.getFirstPosts()
+  return storePosts.getFirstPosts()
 })
 
 const isFirstPost = computed(() => {
@@ -20,17 +22,19 @@ const isLastPost = computed(() => {
   return (index: number) => index === firstPosts.value.length - 1
 })
 
-function moveUp(index: number) {
-  store.movePostUp(index)
+function moveUp(index: number, postId: number) {
+  storePosts.movePostUp(index)
+  storeActions.setNewAction(index, index - 1, postId)
 }
 
-function moveDown(index: number) {
-  store.movePostDown(index)
+function moveDown(index: number, postId: number) {
+  storePosts.movePostDown(index)
+  storeActions.setNewAction(index, index + 1, postId)
 }
 
 onMounted(() => {
   // fetch all posts when component is mounted
-  store.fetchPosts()
+  storePosts.fetchPosts()
 })
 </script>
 
@@ -45,10 +49,12 @@ onMounted(() => {
       <template #action>
         <div class="h-full flex ml-5 flex-col"
           :class="isFirstPost(index) || isLastPost(index) ? 'justify-center' : 'justify-between'">
-          <ButtonIcon @click-event="moveUp(index)" :text="'Move post ' + post.id + ' up'" v-if="!isFirstPost(index)">
+          <ButtonIcon @click-event="moveUp(index, post.id)" :text="'Move post ' + post.id + ' up'"
+            v-if="!isFirstPost(index)">
             <ChevronUpIcon class="h-6 w-6" />
           </ButtonIcon>
-          <ButtonIcon @click-event="moveDown(index)" :text="'Move post ' + post.id + ' down'" v-if="!isLastPost(index)">
+          <ButtonIcon @click-event="moveDown(index, post.id)" :text="'Move post ' + post.id + ' down'"
+            v-if="!isLastPost(index)">
             <ChevronDownIcon class="h-6 w-6" />
           </ButtonIcon>
         </div>

@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 interface Props {
   title: string
-  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p'
   isInvertColour?: boolean
 }
 
@@ -17,6 +17,8 @@ const fontSizeClass = computed<string>(() => {
       return 'text-2xl'
     case 'h2':
       return 'text-xl'
+    case 'p':
+      return 'text-md'
     default:
       return 'text-lg'
   }

@@ -27,17 +27,17 @@ export const usePostStore = defineStore('post', {
     },
     movePostUp(index: number) {
       if (index > 0) {
-        const temp = this.posts[index - 1];
-        this.posts[index - 1] = this.posts[index];
-        this.posts[index] = temp;
+        const temp = this.posts[index - 1]
+        this.posts[index - 1] = this.posts[index]
+        this.posts[index] = temp
       }
     },
     movePostDown(index: number) {
       if (index < this.posts.length - 1) {
-        const temp = this.posts[index + 1];
-        this.posts[index + 1] = this.posts[index];
-        this.posts[index] = temp;
+        const temp = this.posts[index + 1]
+        this.posts[index + 1] = this.posts[index]
+        this.posts[index] = temp
       }
-    },
+    }
   }
 })
