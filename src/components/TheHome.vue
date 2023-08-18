@@ -5,10 +5,10 @@ import PostsWrapper from './posts/PostsWrapper.vue'
 
 <template>
   <div class="md:flex gap-10 place-content-between">
-    <div class="flex-1 md:max-w-md">
+    <div class="flex-1 md:max-w-[30rem]">
       <PostsWrapper />
     </div>
-    <div class="flex-1 md:max-w-md">
+    <div class="flex-1 md:max-w-[30rem]">
       <ActionsWrapper />
     </div>
   </div>

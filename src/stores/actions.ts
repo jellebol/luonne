@@ -20,8 +20,8 @@ export const useActionStore = defineStore('action', {
       console.log(oldIndex, newIndex, postId)
       this.actions.push({ postId, newIndex, oldIndex })
     },
-    undoAction() {
-      console.log(this.actions)
+    undoAction(action: ActionLog) {
+      console.log(action)
     }
   }
 })
