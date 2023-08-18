@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-interface PostResponse {
-  id: number
+export interface PostResponse {
+  id: number // only id is used atm
 }
 
 export const usePostStore = defineStore('post', {
@@ -24,6 +24,20 @@ export const usePostStore = defineStore('post', {
         // TODO glorious error handling
         console.log(error)
       }
-    }
+    },
+    movePostUp(index: number) {
+      if (index > 0) {
+        const temp = this.posts[index - 1];
+        this.posts[index - 1] = this.posts[index];
+        this.posts[index] = temp;
+      }
+    },
+    movePostDown(index: number) {
+      if (index < this.posts.length - 1) {
+        const temp = this.posts[index + 1];
+        this.posts[index + 1] = this.posts[index];
+        this.posts[index] = temp;
+      }
+    },
   }
 })

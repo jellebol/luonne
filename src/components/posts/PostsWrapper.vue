@@ -21,11 +21,11 @@ const isLastPost = computed(() => {
 })
 
 function moveUp(index: number) {
-  console.info(index)
+  store.movePostUp(index)
 }
 
 function moveDown(index: number) {
-  console.info(index)
+  store.movePostDown(index)
 }
 
 onMounted(() => {
