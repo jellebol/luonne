@@ -11,6 +11,5 @@ import PostsWrapper from './posts/PostsWrapper.vue'
     <div class="flex-1 md:max-w-md">
       <ActionsWrapper />
     </div>
-
   </div>
 </template>

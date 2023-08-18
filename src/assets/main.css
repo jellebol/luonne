@@ -2,7 +2,9 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --purple: #6357b1;
+  --purple-light: #dcd9f5;
+  --purple: #a098d3;
+  --purple-dark: #6357b1;
   --gray-light: #f6f6f6;
 }
 

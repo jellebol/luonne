@@ -1,10 +1,24 @@
 <script setup lang="ts">
+import ButtonIcon from '../buttons/ButtonIcon.vue'
 import CardWrapper from '../card/CardWrapper.vue'
 import HeadingText from '../typography/HeadingText.vue'
-import { onMounted } from 'vue'
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
+import { computed, onMounted } from 'vue'
 import { usePostStore } from '../../stores/posts'
 
 const store = usePostStore()
+
+const firstPosts = computed(() => {
+  return store.getFirstPosts()
+})
+
+const isFirstPost = computed(() => {
+  return (index: number) => index === 0
+})
+
+const isLastPost = computed(() => {
+  return (index: number) => index === firstPosts.value.length - 1
+})
 
 onMounted(() => {
   // fetch all posts when component is mounted
@@ -18,8 +32,21 @@ onMounted(() => {
   </div>
 
   <div class="flex flex-col space-y-5">
-    <CardWrapper v-for="post in store.getFirstPosts()" :key="post.id">
+    <CardWrapper v-for="(post, index) in firstPosts" :key="post.id">
       <HeadingText :title="'Post ' + post.id" />
+      <template #action>
+        <div
+          class="h-full flex ml-5 flex-col"
+          :class="isFirstPost(index) || isLastPost(index) ? 'justify-center' : 'justify-between'"
+        >
+          <ButtonIcon :text="'Move post ' + post.id + ' up'" v-if="!isFirstPost(index)">
+            <ChevronUpIcon class="h-6 w-6" />
+          </ButtonIcon>
+          <ButtonIcon :text="'Move post ' + post.id + ' down'" v-if="!isLastPost(index)">
+            <ChevronDownIcon class="h-6 w-6" />
+          </ButtonIcon>
+        </div>
+      </template>
     </CardWrapper>
   </div>
 </template>

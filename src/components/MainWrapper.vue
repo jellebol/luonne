@@ -11,7 +11,7 @@
 .bg-diagonal {
   width: 130vw;
   height: 25vh;
-  background-image: linear-gradient(to bottom right, var(--purple) 50%, transparent 50%);
+  background-image: linear-gradient(to bottom right, var(--purple-dark) 50%, transparent 50%);
 }
 
 @media (min-width: theme('screens.sm')) {
