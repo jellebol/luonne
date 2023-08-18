@@ -47,14 +47,22 @@ onMounted(() => {
     <CardWrapper v-for="(post, index) in firstPosts" :key="post.id">
       <HeadingText :title="'Post ' + post.id" />
       <template #action>
-        <div class="h-full flex ml-5 flex-col"
-          :class="isFirstPost(index) || isLastPost(index) ? 'justify-center' : 'justify-between'">
-          <ButtonIcon @click-event="moveUp(index, post.id)" :text="'Move post ' + post.id + ' up'"
-            v-if="!isFirstPost(index)">
+        <div
+          class="h-full flex ml-5 flex-col"
+          :class="isFirstPost(index) || isLastPost(index) ? 'justify-center' : 'justify-between'"
+        >
+          <ButtonIcon
+            @click-event="moveUp(index, post.id)"
+            :text="'Move post ' + post.id + ' up'"
+            v-if="!isFirstPost(index)"
+          >
             <ChevronUpIcon class="h-6 w-6" />
           </ButtonIcon>
-          <ButtonIcon @click-event="moveDown(index, post.id)" :text="'Move post ' + post.id + ' down'"
-            v-if="!isLastPost(index)">
+          <ButtonIcon
+            @click-event="moveDown(index, post.id)"
+            :text="'Move post ' + post.id + ' down'"
+            v-if="!isLastPost(index)"
+          >
             <ChevronDownIcon class="h-6 w-6" />
           </ButtonIcon>
         </div>

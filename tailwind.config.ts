@@ -14,9 +14,11 @@ export default {
         dark: '#6357b1'
       },
       green: '#25ff90',
-      'gray-dark': '#4b4b4b',
-      gray: '#787878',
-      'gray-light': '#f6f6f6',
+      gray: {
+        light: '#f6f6f6',
+        DEFAULT: '#ebebeb',
+        dark: '#4b4b4b'
+      },
     },
     container: {
       center: true,
