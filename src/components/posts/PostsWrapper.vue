@@ -5,10 +5,8 @@ import HeadingText from '../typography/HeadingText.vue'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted } from 'vue'
 import { usePostStore } from '../../stores/posts'
-import { useActionStore } from '../../stores/actions'
 
 const storePosts = usePostStore()
-const storeActions = useActionStore()
 
 const firstPosts = computed(() => {
   return storePosts.getFirstPosts()
@@ -23,13 +21,11 @@ const isLastPost = computed(() => {
 })
 
 function moveUp(index: number, postId: number) {
-  storePosts.movePostUp(index)
-  storeActions.setNewAction(index, index - 1, postId)
+  storePosts.movePost(index, index - 1, postId)
 }
 
 function moveDown(index: number, postId: number) {
-  storePosts.movePostDown(index)
-  storeActions.setNewAction(index, index + 1, postId)
+  storePosts.movePost(index, index + 1, postId)
 }
 
 onMounted(() => {
