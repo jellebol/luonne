@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import CardWrapper from './CardWrapper.vue'
 
 describe('CardWrapper', () => {
   it('renders slots', () => {
-    const wrapper = mount(CardWrapper, {
+    const wrapper = shallowMount(CardWrapper, {
       slots: {
         default: '<div>Header</div>',
         main: '<div>Main Content</div>'
@@ -16,7 +16,7 @@ describe('CardWrapper', () => {
     expect(wrapper.html()).toContain('<div>Main Content</div>')
   })
   it('does not render <main> if slot is not filled', () => {
-    const wrapper = mount(CardWrapper, {
+    const wrapper = shallowMount(CardWrapper, {
       slots: {
         default: '<div>Header</div>'
       }

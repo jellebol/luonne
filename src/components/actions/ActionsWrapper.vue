@@ -10,10 +10,6 @@ import type { ActionLog } from '../../stores/actions'
 
 const storeActions = useActionStore()
 
-const allActions = computed(() => {
-  return storeActions.getActions
-})
-
 const getActionText = computed(() => {
   return (action: ActionLog) =>
     'Moved post ' +
@@ -23,21 +19,21 @@ const getActionText = computed(() => {
     ' to index ' +
     action.newIndex
 })
-
-function undoAction(action: ActionLog) {
-  storeActions.undoAction(action)
-}
 </script>
 
 <template>
   <CardWrapper>
     <HeadingText title="List of actions committed" />
     <template #main>
-      <ListWrapper v-if="allActions.length > 0">
-        <ListItem v-for="(action, index) in allActions" :key="index" :isFirst="index === 0">
+      <ListWrapper v-if="storeActions.getActions.length > 0">
+        <ListItem
+          v-for="(action, index) in storeActions.getActions"
+          :key="index"
+          :isFirst="index === 0"
+        >
           <p>{{ getActionText(action) }}</p>
           <template #action>
-            <ButtonText @click-event="undoAction(action)" text="Time travel" />
+            <ButtonText @click-event="storeActions.undoAction(action)" text="Time travel" />
           </template>
         </ListItem>
       </ListWrapper>

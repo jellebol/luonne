@@ -20,12 +20,12 @@ const isLastPost = computed(() => {
   return (index: number) => index === firstPosts.value.length - 1
 })
 
-function moveUp(index: number, postId: number) {
-  storePosts.movePost(index, index - 1, postId)
+function moveUp(index: number) {
+  storePosts.movePost(index, index - 1)
 }
 
-function moveDown(index: number, postId: number) {
-  storePosts.movePost(index, index + 1, postId)
+function moveDown(index: number) {
+  storePosts.movePost(index, index + 1)
 }
 
 onMounted(() => {
@@ -40,7 +40,7 @@ onMounted(() => {
   </div>
 
   <div class="flex flex-col space-y-5">
-    <CardWrapper v-for="(post, index) in firstPosts" :key="post.id">
+    <CardWrapper v-for="(post, index) in firstPosts" :key="post.id" :id="'post-' + post.id">
       <HeadingText :title="'Post ' + post.id" />
       <template #action>
         <div
@@ -48,14 +48,14 @@ onMounted(() => {
           :class="isFirstPost(index) || isLastPost(index) ? 'justify-center' : 'justify-between'"
         >
           <ButtonIcon
-            @click-event="moveUp(index, post.id)"
+            @click-event="moveUp(index)"
             :text="'Move post ' + post.id + ' up'"
             v-if="!isFirstPost(index)"
           >
             <ChevronUpIcon class="h-6 w-6" />
           </ButtonIcon>
           <ButtonIcon
-            @click-event="moveDown(index, post.id)"
+            @click-event="moveDown(index)"
             :text="'Move post ' + post.id + ' down'"
             v-if="!isLastPost(index)"
           >

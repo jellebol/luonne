@@ -29,11 +29,11 @@ export const usePostStore = defineStore('post', {
         console.log(error)
       }
     },
-    movePost(index: number, newIndex: number, postId: number) {
+    movePost(index: number, newIndex: number) {
       const storeActions = useActionStore()
       // first set the action with current post order
       // so that we can restore that order later on
-      storeActions.setNewAction(index, newIndex, postId)
+      storeActions.setNewAction(index, newIndex, this.posts[index].id)
 
       // then move the post to its new position
       const temp = this.posts[newIndex]
