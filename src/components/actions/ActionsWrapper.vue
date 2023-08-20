@@ -30,6 +30,7 @@ const getActionText = computed(() => {
           v-for="(action, index) in storeActions.getActions"
           :key="index"
           :isFirst="index === 0"
+          class="animate-fade animate-delay-75 animate-duration-150"
         >
           <p>{{ getActionText(action) }}</p>
           <template #action>

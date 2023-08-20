@@ -3,7 +3,7 @@ import ButtonIcon from '../buttons/ButtonIcon.vue'
 import CardWrapper from '../card/CardWrapper.vue'
 import HeadingText from '../typography/HeadingText.vue'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { usePostStore } from '../../stores/posts'
 
 const storePosts = usePostStore()
@@ -20,12 +20,29 @@ const isLastPost = computed(() => {
   return (index: number) => index === firstPosts.value.length - 1
 })
 
+// fade all posts on first enter
+const animation = ref(firstPosts.value.map(() => 'animate-fade'))
+
+function resetAnimation() {
+  animation.value = firstPosts.value.map(() => '')
+}
+
 function moveUp(index: number) {
+  // animate clickted post down
+  animation.value[index] = 'animate-fade-down'
+  // animate post in target location up
+  animation.value[index - 1] = 'animate-fade-up'
   storePosts.movePost(index, index - 1)
+  setTimeout(resetAnimation, 500)
 }
 
 function moveDown(index: number) {
+  // animate clickted post up
+  animation.value[index] = 'animate-fade-up'
+  // animate post in target location down
+  animation.value[index + 1] = 'animate-fade-down'
   storePosts.movePost(index, index + 1)
+  setTimeout(resetAnimation, 500)
 }
 
 onMounted(() => {
@@ -39,8 +56,14 @@ onMounted(() => {
     <HeadingText title="Sortable Post List" isInvertColour type="h1" />
   </div>
 
-  <div class="flex flex-col space-y-5">
-    <CardWrapper v-for="(post, index) in firstPosts" :key="post.id" :id="'post-' + post.id">
+  <div class="flex flex-col space-y-2 md:space-y-5">
+    <CardWrapper
+      v-for="(post, index) in firstPosts"
+      :key="post.id"
+      :id="'post-' + post.id"
+      class="animate-duration-200"
+      :class="animation[index]"
+    >
       <HeadingText :title="'Post ' + post.id" />
       <template #action>
         <div

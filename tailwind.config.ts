@@ -24,6 +24,6 @@ export default {
       center: true,
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animated')],
 } satisfies Config
 
