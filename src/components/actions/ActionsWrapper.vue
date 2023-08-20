@@ -26,12 +26,19 @@ const getActionText = computed(() => {
     <HeadingText title="List of actions committed" />
     <template #main>
       <ListWrapper v-if="storeActions.getActions.length > 0">
-        <ListItem v-for="(action, index) in storeActions.getActions" :key="index" :isFirst="index === 0"
-          class="animate-fade animate-delay-75 animate-duration-150">
+        <ListItem
+          v-for="(action, index) in storeActions.getActions"
+          :key="index"
+          :isFirst="index === 0"
+          class="animate-fade animate-delay-75 animate-duration-150"
+        >
           <p>{{ getActionText(action) }}</p>
           <template #action>
-            <ButtonText @click-event="storeActions.undoAction(action)" text="Time travel"
-              titleText="Revert post order to before this action was taken" />
+            <ButtonText
+              @click-event="storeActions.undoAction(action)"
+              text="Time travel"
+              titleText="Revert post order to before this action was taken"
+            />
           </template>
         </ListItem>
       </ListWrapper>
