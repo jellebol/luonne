@@ -8,4 +8,8 @@ describe('ButtonText', () => {
     const wrapper = shallowMount(ButtonText, { props: { text: 'Click' } })
     expect(wrapper.text()).toContain('Click')
   })
+  it('renders title text in html', () => {
+    const wrapper = shallowMount(ButtonText, { props: { text: 'Click', titleText: 'Information' } })
+    expect(wrapper.html()).toContain('Information')
+  })
 })
